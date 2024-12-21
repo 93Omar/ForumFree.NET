@@ -17,7 +17,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPostsByUserId(int userId, int page)
         {
-            var response = await _forumFreeClient.GetPostsByUserId(userId, page);
+            var response = await _forumFreeClient.GetPostsByUserIdAsync(userId, page);
             string rawResponse = await response.Content.ReadAsStringAsync();
 
             return Ok(rawResponse);
@@ -26,7 +26,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProfileById(int userId)
         {
-            var response = await _forumFreeClient.GetProfileById(userId);
+            var response = await _forumFreeClient.GetProfileByIdAsync(userId);
             string rawResponse = await response.Content.ReadAsStringAsync();
 
             return Ok(rawResponse);
@@ -35,7 +35,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProfileByNickname(string nickname)
         {
-            var response = await _forumFreeClient.GetProfileByNickname(nickname);
+            var response = await _forumFreeClient.GetProfileByNicknameAsync(nickname);
             string rawResponse = await response.Content.ReadAsStringAsync();
 
             return Ok(rawResponse);

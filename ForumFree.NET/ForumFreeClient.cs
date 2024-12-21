@@ -15,7 +15,7 @@ namespace ForumFree.NET
             _httpClient = httpClient;
         }
 
-        public async Task<HttpResponseMessage> GetPostsByUserId(int userId, int page)
+        public async Task<HttpResponseMessage> GetPostsByUserIdAsync(int userId, int page)
         {
             IPaginationStrategy paginationStrategy = new FifteenMultiplePaginationStrategy();
 
@@ -31,7 +31,7 @@ namespace ForumFree.NET
             return response;
         }
 
-        public async Task<HttpResponseMessage> GetProfileById(int userId)
+        public async Task<HttpResponseMessage> GetProfileByIdAsync(int userId)
         {
             Dictionary<string, string?> parameters = QueryStringUtilities.CreateWithCookie();
             parameters.Add("mid", userId.ToString());
@@ -44,7 +44,7 @@ namespace ForumFree.NET
             return response;
         }
 
-        public async Task<HttpResponseMessage> GetProfileByNickname(string nickname)
+        public async Task<HttpResponseMessage> GetProfileByNicknameAsync(string nickname)
         {
             Dictionary<string, string?> parameters = QueryStringUtilities.CreateWithCookie();
             parameters.Add("nick", nickname);
