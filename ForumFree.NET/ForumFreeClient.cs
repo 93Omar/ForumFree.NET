@@ -1,5 +1,8 @@
-﻿using ForumFree.NET.Pagination;
+﻿using ForumFree.NET.Models;
+using ForumFree.NET.Pagination;
+using ForumFree.NET.Utilities;
 using Microsoft.AspNetCore.WebUtilities;
+using System.Net.Http.Json;
 
 namespace ForumFree.NET
 {
@@ -14,19 +17,19 @@ namespace ForumFree.NET
             _httpClient = httpClient;
         }
 
-        public async Task GetPostsByUserId(int userId, int page)
+        public async Task<PaginatedPostsResponse?> GetPostsByUserId(int userId, int page)
         {
             IPaginationStrategy paginationStrategy = new FifteenMultiplePaginationStrategy();
 
-            Dictionary<string, string?> parameters = new()
-            {
-                { "member_posts", userId.ToString() },
-                { "st", paginationStrategy.GetPageNumber(page).ToString() }
-            };
+            Dictionary<string, string?> parameters = QueryStringUtilities.CreateWithCookie();
+            parameters.Add("member_posts", userId.ToString());
+            parameters.Add("st", paginationStrategy.GetPageNumber(page).ToString());
 
             string requestUri = QueryHelpers.AddQueryString(_apiPrefix, parameters);
 
-            await _httpClient.GetAsync(requestUri);
+            PaginatedPostsResponse? response = await _httpClient.GetFromJsonAsync<PaginatedPostsResponse>(requestUri);
+
+            return response;
         }
     }
 }

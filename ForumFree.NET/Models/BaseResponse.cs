@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace ForumFree.NET.Models
 {
     public class BaseResponse
     {
-        [JsonProperty("idForum")]
+        [JsonPropertyName("idForum")]
         public int ForumId { get; set; }
     }
 }

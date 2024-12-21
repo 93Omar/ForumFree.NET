@@ -1,7 +1,7 @@
 ﻿
 namespace ForumFree.NET.Pagination
 {
-    public interface IPaginationStrategy
+    internal interface IPaginationStrategy
     {
         public int GetPageNumber(int pageIndex);
     }
