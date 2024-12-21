@@ -18,21 +18,27 @@ namespace WebApi.Controllers
         public async Task<IActionResult> GetPostsByUserId(int userId, int page)
         {
             var response = await _forumFreeClient.GetPostsByUserId(userId, page);
-            return Ok(response);
+            string rawResponse = await response.Content.ReadAsStringAsync();
+
+            return Ok(rawResponse);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetProfileById(int userId)
         {
             var response = await _forumFreeClient.GetProfileById(userId);
-            return Ok(response);
+            string rawResponse = await response.Content.ReadAsStringAsync();
+
+            return Ok(rawResponse);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetProfileByNickname(string nickname)
         {
             var response = await _forumFreeClient.GetProfileByNickname(nickname);
-            return Ok(response);
+            string rawResponse = await response.Content.ReadAsStringAsync();
+
+            return Ok(rawResponse);
         }
     }
 }
