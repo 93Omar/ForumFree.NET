@@ -11,20 +11,7 @@ namespace ForumFree.NET.Models
         public DateTime Date { get; set; }
 
         [JsonPropertyName("points")]
-        private string? PointsRaw { get; set; }
-
-        [JsonIgnore]
-        public int Points
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(PointsRaw))
-                    return 0;
-
-                _ = int.TryParse(PointsRaw, out int result);
-                return result;
-            }
-        }
+        private string? Points { get; set; }
 
         [JsonPropertyName("content")]
         public string? Content { get; set; }
